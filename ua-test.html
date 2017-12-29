@@ -9,9 +9,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<a href='market://details?id=com.game168.gameofmafia&referrer=af_tranid%3DeOauad_2iuEFovjqpzugHQ%26pid%3Dpandola'>market link</a><br>
 	<a href='https://play.google.com/store/apps/details?id=com.game168.gameofmafia&referrer=af_tranid%3DMdEdQdsHeGil9hIYL7ofNg%26pid%3Dpandola'>http link</a>
+	<hr>
+	<button id='btn'>領取下載門票</button> <br>
+	<button id='btn_interval'>開啟one day pass每秒自動檢查</button>
 
 	<script type="text/javascript">
+		var isClicked = false
 		$('#ua').html('User-Agent:'+navigator.userAgent)
+		$('#btn').click(function() {
+			isClicked = true
+			location.href = 'market://details?id=com.game168.gameofmafia&referrer=af_tranid%3DeOauad_2iuEFovjqpzugHQ%26pid%3Dpandola'
+		})
+		$('#btn_interval').click(function() {
+			setInterval(function(){
+				if (isClicked)
+					location.reload()
+			},1000)
+		})
 	</script>
 </body>
 </html>
