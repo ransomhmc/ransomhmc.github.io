@@ -112,6 +112,31 @@
         .item-name { font-weight: bold; display: block; color: #222; }
         .item-desc { font-size: 12px; color: #666; }
         
+        /* 輸入框樣式 */
+        .workout-inputs {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        .workout-inputs input {
+            width: 45px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .input-label {
+            font-size: 9px;
+            color: #999;
+            margin-bottom: 2px;
+        }
+        
         .notice { 
             background: #fff3cd; 
             border: 1px solid #ffeeba; 
@@ -168,18 +193,58 @@
             <li class="workout-item">
                 <div class="item-icon">A</div>
                 <div class="item-info"><span class="item-name">臥推</span><span class="item-desc">12-15次 • 胸部大肌群</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="135-A-weight" placeholder="kg" oninput="saveData('135-A-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="135-A-reps" placeholder="次" oninput="saveData('135-A-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">B</div>
                 <div class="item-info"><span class="item-name">划船</span><span class="item-desc">12-15次 • 背部厚度</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="135-B-weight" placeholder="kg" oninput="saveData('135-B-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="135-B-reps" placeholder="次" oninput="saveData('135-B-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">C</div>
                 <div class="item-info"><span class="item-name">肩推</span><span class="item-desc">12-15次 • 肩部線條</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="135-C-weight" placeholder="kg" oninput="saveData('135-C-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="135-C-reps" placeholder="次" oninput="saveData('135-C-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">D</div>
                 <div class="item-info"><span class="item-name">捲腹</span><span class="item-desc">20次 • 核心穩定</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="135-D-weight" placeholder="kg" oninput="saveData('135-D-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="135-D-reps" placeholder="次" oninput="saveData('135-D-reps', this.value)">
+                    </div>
+                </div>
             </li>
         </ul>
         <p class="notice">⚠️ 組間不休息，換動作即休息！</p>
@@ -192,18 +257,58 @@
             <li class="workout-item">
                 <div class="item-icon">A</div>
                 <div class="item-info"><span class="item-name">滑輪下拉 / 引體向上機</span><span class="item-desc">12-15次 • 背部寬度</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="246-A-weight" placeholder="kg" oninput="saveData('246-A-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="246-A-reps" placeholder="次" oninput="saveData('246-A-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">B</div>
                 <div class="item-info"><span class="item-name">側平舉</span><span class="item-desc">15-20次 • 肩部中束</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="246-B-weight" placeholder="kg" oninput="saveData('246-B-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="246-B-reps" placeholder="次" oninput="saveData('246-B-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">C</div>
                 <div class="item-info"><span class="item-name">滑輪三頭下壓</span><span class="item-desc">15次 • 手臂線條</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="246-C-weight" placeholder="kg" oninput="saveData('246-C-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="246-C-reps" placeholder="次" oninput="saveData('246-C-reps', this.value)">
+                    </div>
+                </div>
             </li>
             <li class="workout-item">
                 <div class="item-icon">D</div>
                 <div class="item-info"><span class="item-name">二頭彎舉</span><span class="item-desc">15次 • 肱二頭肌</span></div>
+                <div class="workout-inputs">
+                    <div class="input-group">
+                        <span class="input-label">重量</span>
+                        <input type="text" id="246-D-weight" placeholder="kg" oninput="saveData('246-D-weight', this.value)">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-label">次數</span>
+                        <input type="text" id="246-D-reps" placeholder="次" oninput="saveData('246-D-reps', this.value)">
+                    </div>
+                </div>
             </li>
         </ul>
         <p class="notice">⚠️ 極速執行，器材預先準備好！</p>
@@ -225,6 +330,19 @@
 </div>
 
 <script>
+    function saveData(id, value) {
+        localStorage.setItem(id, value);
+    }
+
+    function loadData() {
+        document.querySelectorAll('.workout-inputs input').forEach(input => {
+            const savedValue = localStorage.getItem(input.id);
+            if (savedValue) {
+                input.value = savedValue;
+            }
+        });
+    }
+
     function switchTab(type) {
         // 隱藏所有內容，顯示選中內容
         document.querySelectorAll('.workout-content').forEach(el => el.classList.remove('active'));
@@ -242,6 +360,8 @@
         const weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
         
         document.getElementById('date-text').innerText = "今天是 " + weekDays[day] + " • 建議執行以下課表";
+
+        loadData();
 
         // 判斷邏輯：二四六顯示 246 組，其餘顯示 135 組
         if (day === 2 || day === 4 || day === 6) {
