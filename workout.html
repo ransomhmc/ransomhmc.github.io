@@ -5,22 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>45分鐘高效減脂課表</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
-        .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h1 { color: #e63946; text-align: center; font-size: 24px; margin-bottom: 10px; }
-        .subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 20px; }
-        .stats { display: flex; justify-content: space-around; background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        :root {
+            --primary-red: #e63946;
+            --dark-blue: #1d3557;
+            --light-bg: #f4f4f9;
+            --card-bg: #ffffff;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background-color: var(--light-bg); 
+        }
+        .card { 
+            background: var(--card-bg); 
+            border-radius: 15px; 
+            padding: 25px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+        }
+        h1 { 
+            color: var(--primary-red); 
+            text-align: center; 
+            font-size: 24px; 
+            margin-bottom: 5px; 
+        }
+        .date-display {
+            text-align: center;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .stats { 
+            display: flex; 
+            justify-content: space-around; 
+            background: #f8f9fa; 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+        }
         .stat-item { text-align: center; }
-        .stat-value { display: block; font-weight: bold; color: #1d3557; }
+        .stat-value { display: block; font-weight: bold; color: var(--dark-blue); }
         .stat-label { font-size: 12px; color: #888; }
-        .section-title { border-left: 5px solid #e63946; padding-left: 10px; margin: 25px 0 15px; color: #1d3557; }
+        
+        /* 頁籤切換樣式 */
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 5px;
+            border: none;
+            border-radius: 8px;
+            background: #eee;
+            color: #666;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        .tab-btn.active {
+            background: var(--dark-blue);
+            color: white;
+            box-shadow: 0 4px 10px rgba(29, 53, 87, 0.3);
+        }
+
+        .section-title { 
+            border-left: 5px solid var(--primary-red); 
+            padding-left: 10px; 
+            margin: 20px 0 15px; 
+            color: var(--dark-blue); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title span { font-size: 12px; color: #888; font-weight: normal; }
+
         .workout-list { list-style: none; padding: 0; }
-        .workout-item { display: flex; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #eee; }
-        .item-icon { width: 30px; height: 30px; background: #e63946; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; flex-shrink: 0; }
+        .workout-item { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 12px; 
+            padding-bottom: 10px; 
+            border-bottom: 1px dashed #eee; 
+        }
+        .item-icon { 
+            width: 28px; 
+            height: 28px; 
+            background: var(--primary-red); 
+            color: white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-right: 12px; 
+            font-weight: bold; 
+            flex-shrink: 0; 
+            font-size: 14px;
+        }
         .item-info { flex-grow: 1; }
-        .item-name { font-weight: bold; display: block; }
+        .item-name { font-weight: bold; display: block; color: #222; }
         .item-desc { font-size: 12px; color: #666; }
-        .notice { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; border-radius: 5px; font-size: 13px; margin-top: 10px; }
+        
+        .notice { 
+            background: #fff3cd; 
+            border: 1px solid #ffeeba; 
+            padding: 10px; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            margin-top: 10px;
+            color: #856404;
+        }
+        
+        /* 內容隱藏邏輯 */
+        .workout-content { display: none; }
+        .workout-content.active { display: block; animation: fadeIn 0.4s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #aaa; }
     </style>
 </head>
@@ -28,7 +138,7 @@
 
 <div class="card">
     <h1>🔥 45min 減脂魔鬼課表</h1>
-    <p class="subtitle">100% 巨大組 • 零組間休息 • 腳踏車 SIT</p>
+    <div class="date-display" id="date-text">正在讀取今日日期...</div>
 
     <div class="stats">
         <div class="stat-item">
@@ -39,95 +149,108 @@
             <span class="stat-value">20min</span>
             <span class="stat-label">有氧</span>
         </div>
-        <div class="stat-item" style="color: #e63946;">
+        <div class="stat-item" style="color: var(--primary-red);">
             <span class="stat-value">45min</span>
             <span class="stat-label">總計</span>
         </div>
     </div>
 
-    <div class="subtitle" style="background: #1d3557; color: white; padding: 5px; border-radius: 5px;">
-        一三五：推拉組合 | 二四六：細節雕塑
+    <!-- 頁籤切換按鈕 -->
+    <div class="tab-nav">
+        <button class="tab-btn" id="btn-135" onclick="switchTab('135')">一三五：推拉組合</button>
+        <button class="tab-btn" id="btn-246" onclick="switchTab('246')">二四六：細節雕塑</button>
     </div>
 
-    <h3 class="section-title">🏋️ 上肢巨大組 (循環 4 輪)</h3>
-    <ul class="workout-list">
-        <li class="workout-item">
-            <div class="item-icon">A</div>
-            <div class="item-info">
-                <span class="item-name">臥推</span>
-                <span class="item-desc">12-15次 • 胸部大肌群</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">B</div>
-            <div class="item-info">
-                <span class="item-name">划船</span>
-                <span class="item-desc">12-15次 • 背部厚度</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">C</div>
-            <div class="item-info">
-                <span class="item-name">肩推</span>
-                <span class="item-desc">12-15次 • 肩部線條</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">D</div>
-            <div class="item-info">
-                <span class="item-name">捲腹</span>
-                <span class="item-desc">20次 • 核心穩定</span>
-            </div>
-        </li>
-    </ul>
-    <p class="notice">⚠️ 組間不休息，換動作即休息！</p>
+    <!-- 課表內容 A: 一三五 -->
+    <div id="content-135" class="workout-content">
+        <h3 class="section-title">🏋️ 上肢巨大組 <span>循環 4 輪</span></h3>
+        <ul class="workout-list">
+            <li class="workout-item">
+                <div class="item-icon">A</div>
+                <div class="item-info"><span class="item-name">臥推</span><span class="item-desc">12-15次 • 胸部大肌群</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">B</div>
+                <div class="item-info"><span class="item-name">划船</span><span class="item-desc">12-15次 • 背部厚度</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">C</div>
+                <div class="item-info"><span class="item-name">肩推</span><span class="item-desc">12-15次 • 肩部線條</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">D</div>
+                <div class="item-info"><span class="item-name">捲腹</span><span class="item-desc">20次 • 核心穩定</span></div>
+            </li>
+        </ul>
+        <p class="notice">⚠️ 組間不休息，換動作即休息！</p>
+    </div>
 
-    <h3 class="section-title">💪 線條巨大組 (循環 4 輪)</h3>
-    <ul class="workout-list">
-        <li class="workout-item">
-            <div class="item-icon">A</div>
-            <div class="item-info">
-                <span class="item-name">滑輪下拉 / 引體向上機</span>
-                <span class="item-desc">12-15次 • 背部寬度</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">B</div>
-            <div class="item-info">
-                <span class="item-name">側平舉</span>
-                <span class="item-desc">15-20次 • 肩部中束</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">C</div>
-            <div class="item-info">
-                <span class="item-name">滑輪三頭下壓</span>
-                <span class="item-desc">15次 • 手臂線條</span>
-            </div>
-        </li>
-        <li class="workout-item">
-            <div class="item-icon">D</div>
-            <div class="item-info">
-                <span class="item-name">二頭彎舉</span>
-                <span class="item-desc">15次 • 肱二頭肌</span>
-            </div>
-        </li>
-    </ul>
-    <p class="notice">⚠️ 極速執行，器材預先準備好！</p>
+    <!-- 課表內容 B: 二四六 -->
+    <div id="content-246" class="workout-content">
+        <h3 class="section-title">💪 線條巨大組 <span>循環 4 輪</span></h3>
+        <ul class="workout-list">
+            <li class="workout-item">
+                <div class="item-icon">A</div>
+                <div class="item-info"><span class="item-name">滑輪下拉 / 引體向上機</span><span class="item-desc">12-15次 • 背部寬度</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">B</div>
+                <div class="item-info"><span class="item-name">側平舉</span><span class="item-desc">15-20次 • 肩部中束</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">C</div>
+                <div class="item-info"><span class="item-name">滑輪三頭下壓</span><span class="item-desc">15次 • 手臂線條</span></div>
+            </li>
+            <li class="workout-item">
+                <div class="item-icon">D</div>
+                <div class="item-info"><span class="item-name">二頭彎舉</span><span class="item-desc">15次 • 肱二頭肌</span></div>
+            </li>
+        </ul>
+        <p class="notice">⚠️ 極速執行，器材預先準備好！</p>
+    </div>
 
+    <!-- 固定顯示的有氧部分 -->
     <h3 class="section-title">🚴 腳踏車 SIT (20分鐘)</h3>
-    <div style="font-size: 14px; padding: 0 10px;">
-        <p>• 00-02min 暖身輕鬆踩</p>
-        <p>• 02-17min 30s 衝刺 + 30s 慢踩 (x15次)</p>
-        <p>• 17-20min 緩冷心率下降</p>
+    <div style="font-size: 14px; padding: 0 10px; background: #fdfdfd; border-radius: 8px;">
+        <p style="margin: 8px 0;">• 00-02min 暖身輕鬆踩</p>
+        <p style="margin: 8px 0;">• 02-17min 30s 衝刺 + 30s 慢踩 (x15次)</p>
+        <p style="margin: 8px 0;">• 17-20min 緩冷心率下降</p>
     </div>
 
-    <p style="text-align: center; font-weight: bold; margin-top: 25px; color: #e63946;">堅持一週六練，減脂必成！</p>
+    <p style="text-align: center; font-weight: bold; margin-top: 25px; color: var(--primary-red);">堅持一週六練，減脂必成！</p>
 </div>
 
 <div class="footer">
     © 您的專屬減脂助教 Gemini
 </div>
+
+<script>
+    function switchTab(type) {
+        // 隱藏所有內容，顯示選中內容
+        document.querySelectorAll('.workout-content').forEach(el => el.classList.remove('active'));
+        document.getElementById('content-' + type).classList.add('active');
+        
+        // 更新按鈕樣式
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + type).classList.add('active');
+    }
+
+    // 初始化偵測日期
+    window.onload = function() {
+        const now = new Date();
+        const day = now.getDay(); // 0:日, 1:一, 2:二, 3:三, 4:四, 5:五, 6:六
+        const weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        
+        document.getElementById('date-text').innerText = "今天是 " + weekDays[day] + " • 建議執行以下課表";
+
+        // 判斷邏輯：二四六顯示 246 組，其餘顯示 135 組
+        if (day === 2 || day === 4 || day === 6) {
+            switchTab('246');
+        } else {
+            switchTab('135');
+        }
+    }
+</script>
 
 </body>
 </html>
